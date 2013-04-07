@@ -32,29 +32,28 @@
     #define LOW 0
 #endif
 
-#ifdef MCU
-    #if MCU == "ATMEGA328"
-        #define DD_MOSI     PB5
-        #define DD_MISO     PB4
-        #define DD_SCK      PB5
-        #define DDR_SPI     DDRB
-        #define PORT_SPI    PORTB
-        #define ADC0        PC0
-        #define ADC1        PC1
-        #define ADC2        PC2
-        #define ADC3        PC3
-        #define ADC4        PC4
-        #define ADC5        PC5
-        #define TX          PD1
-        #define RX          PD0
-        #define RESET       PC6
-    #elif if MCU == "ATTINY85"
-        //TODO: Define ATTINY85 pins
-    #elif if MCU == "ATTINY45"
-        //TODO: Define ATTINY85 pins
-    #endif
-    //TODO: Add more MCU pin definitions
+#ifdef ATMEGA328P
+    #define DD_MOSI     PB5
+    #define DD_MISO     PB4
+    #define DD_SCK      PB5
+    #define DDR_SPI     DDRB
+    #define PORT_SPI    PORTB
+    #define ADC0        PC0
+    #define ADC1        PC1
+    #define ADC2        PC2
+    #define ADC3        PC3
+    #define ADC4        PC4
+    #define ADC5        PC5
+    #define TX          PD1
+    #define RX          PD0
+    #define RESET       PC6
+    #define
+#ifdef ATTINY85
+    //TODO: Define ATTINY85 pins
+#ifdef ATTINY45
+    //TODO: Define ATTINY85 pins
 #endif
+    //TODO: Add more MCU pin definitions
 
 #define BIT(x) (1 << (x))
 #define SETBITS(x,y) ((x) |= (y))
