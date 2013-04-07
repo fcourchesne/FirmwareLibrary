@@ -48,8 +48,12 @@
     #define RX          PD0
     #define RESET       PC6
     #define
+#endif
+
 #ifdef ATTINY85
     //TODO: Define ATTINY85 pins
+#endif
+
 #ifdef ATTINY45
     //TODO: Define ATTINY85 pins
 #endif
