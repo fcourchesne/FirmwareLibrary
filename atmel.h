@@ -4,9 +4,9 @@
 #endif
 
 // Attribute pin numbers of MCUs currently used
-#ifndef MCU
-    #error "You must define MCU in atmel.h in your Libraries"
-#endif
+//#ifndef MCU
+    //#error "You must define MCU in atmel.h in your Libraries"
+//#endif
 
 #ifndef BAUD
     #define BAUD 9600
@@ -47,7 +47,23 @@
     #define TX          PD1
     #define RX          PD0
     #define RESET       PC6
-    #define
+#endif
+
+#ifdef ATMEGA168P
+    #define DD_MOSI     PB3
+    #define DD_MISO     PB4
+    #define DD_SCK      PB5
+    #define DDR_SPI     DDRB
+    #define PORT_SPI    PORTB
+    #define ADC0        PC0
+    #define ADC1        PC1
+    #define ADC2        PC2
+    #define ADC3        PC3
+    #define ADC4        PC4
+    #define ADC5        PC5
+    #define TX          PD1
+    #define RX          PD0
+    #define RESET       PC6
 #endif
 
 #ifdef ATTINY85
@@ -59,14 +75,21 @@
 #endif
     //TODO: Add more MCU pin definitions
 
-#define BIT(x) (1 << (x))
-#define SETBITS(x,y) ((x) |= (y))
-#define CLEARBITS(x,y) ((x) &= (~(y)))
-#define SETBIT(x,y) SETBITS((x), (BIT((y))))
-#define CLEARBIT(x,y) CLEARBITS((x), (BIT((y))))
-#define BITSET(x,y) ((x) & (BIT(y)))
-#define BITCLEAR(x,y) !BITSET((x), (y))
-#define BITSSET(x,y) (((x) & (y)) == (y))
-#define BITSCLEAR(x,y) (((x) & (y)) == 0)
-#define BITVAL(x,y) (((x)>>(y)) & 1)
+#define SETBIT(ADDRESS,BIT) (ADDRESS |= (1<<BIT))
+#define CLEARBIT(ADDRESS,BIT) (ADDRESS &= ~(1<<BIT))
+#define FLIPBIT(ADDRESS,BIT) (ADDRESS ^= (1<<BIT))
+#define CHECKBIT(ADDRESS,BIT) (ADDRESS & (1<<BIT))
+
+#define SETBITMASK(x,y) (x |= (y))
+#define CLEARBITMASK(x,y) (x &= (~y))
+#define FLIPBITMASK(x,y) (x ^= (y))
+#define CHECKBITMASK(x,y) (x & (y))
+
+#define VARFROMCOMB(x, y) x
+#define BITFROMCOMB(x, y) y
+
+#define C_SETBIT(comb) SETBIT(VARFROMCOMB(comb), BITFROMCOMB(comb))
+#define C_CLEARBIT(comb) CLEARBIT(VARFROMCOMB(comb), BITFROMCOMB(comb))
+#define C_FLIPBIT(comb) FLIPBIT(VARFROMCOMB(comb), BITFROMCOMB(comb))
+#define C_CHECKBIT(comb) CHECKBIT(VARFROMCOMB(comb), BITFROMCOMB(comb))
 // Ex: SETBIT(PORTA,3)
